@@ -31,7 +31,7 @@ namespace EmbeddedTaskScheduler
         /// <summary>
         ///     How long the task took to execute last time it ran (in milliseconds)
         /// </summary>
-        public double Duration { get; set; }
+        public int Duration { get; set; }
         /// <summary>
         ///     The exit code of the executable last time it ran
         /// </summary>
