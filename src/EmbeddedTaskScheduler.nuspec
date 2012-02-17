@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>EmbeddedTaskScheduler</id>
+    <version>0.0.1</version>
+    <title>Embedded Task Scheduler</title>
+    <authors>Simon Lomax</authors>
+    <owners>Simon Lomax</owners>
+    <description>Allows tasks to be run on a schedule within a host application</description>
+    <summary>Allows tasks to be run on a schedule within a host application</summary>
+    <projectUrl>http://github.com/simax/EmbeddedTaskScheduler</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>web asp.net mvc task schedule</tags>
+    <dependencies>
+    </dependencies> 
+  </metadata>
+  <files xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <file src="embeddedtaskscheduler\bin\Release\embeddedtaskscheduler.dll" target="lib\" />
+  </files>
+</package>
