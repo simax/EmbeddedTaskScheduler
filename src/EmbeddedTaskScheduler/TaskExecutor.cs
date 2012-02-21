@@ -16,7 +16,13 @@ namespace EmbeddedTaskScheduler
                     return;
                 }
 
-                var process = Process.Start(task.Path, task.Arguments);
+                var process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = task.Path,
+                    Arguments = task.Arguments,
+                    WorkingDirectory = Path.GetDirectoryName(task.Path)
+                });
+
                 process.WaitForExit(timeout);
 
                 if (!process.HasExited)
