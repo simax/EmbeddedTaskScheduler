@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace EmbeddedTaskScheduler
 {
     public class TaskRunner : ITaskRunner
     {
         ITaskExecutor _taskExecutor;
-        bool _taskRunning;
+        Mutex _mutex = new Mutex();
 
         public TaskRunner(ITaskExecutor taskExecutor)
         {
@@ -16,13 +17,11 @@ namespace EmbeddedTaskScheduler
 
         public void RunNextTask(IEnumerable<Task> tasks, int timeout)
         {
-            if (_taskRunning) return;
+            if (!_mutex.WaitOne(0)) return;
 
             var task = getHighestPriorityTask(tasks);
 
             if (task.NextRunTime > DateTime.Now) return;
-
-            _taskRunning = true;
 
             task.IsRunning = true;
             task.LastRunTime = DateTime.Now;
@@ -32,7 +31,7 @@ namespace EmbeddedTaskScheduler
             task.IsRunning = false;
             task.NextRunTime = DateTime.Now.AddSeconds(task.Frequency);
 
-            _taskRunning = false;
+            _mutex.ReleaseMutex();
         }
 
         private Task getHighestPriorityTask(IEnumerable<Task> taskList)
