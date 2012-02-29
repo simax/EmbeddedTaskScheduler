@@ -21,7 +21,11 @@ namespace EmbeddedTaskScheduler
 
             var task = getHighestPriorityTask(tasks);
 
-            if (task.NextRunTime > DateTime.Now) return;
+            if (task.NextRunTime > DateTime.Now)
+            {
+                _mutex.ReleaseMutex();
+                return;
+            }
 
             task.IsRunning = true;
             task.LastRunTime = DateTime.Now;

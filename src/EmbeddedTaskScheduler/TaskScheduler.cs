@@ -37,7 +37,7 @@ namespace EmbeddedTaskScheduler
             _taskRunner = taskRunner;
 
             ProcessTimeout = 1000 * 60 * 10;
-            Granularity = 1000 * 1; //dev
+            Granularity = 1000 * 5;
         }
 
         /// <summary>
